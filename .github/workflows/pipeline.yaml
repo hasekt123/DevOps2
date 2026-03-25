@@ -1,0 +1,20 @@
+name: Weather report
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  weather:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch weather
+        run: |
+          CITY="Prague"
+          # Using curl to fetch the weather in a format suitable for the console
+          WEATHER=$(curl -s "wttr.in/$CITY?format=3")
+          echo "Current weather in $CITY: $WEATHER"
+
+          echo "## $CITY Weather" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## $CITY Weather" >> $GITHUB_STEP_SUMMARY
