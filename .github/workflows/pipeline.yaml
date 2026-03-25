@@ -4,16 +4,21 @@ on:
     branches: [main]
   workflow_dispatch:
   schedule:
-    - cron: "0 * * * *"  # každou hodinu
+    - cron: "0 * * * *"
 
 jobs:
   weather:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        city: [Prague, London, NewYork, Tokyo]
+
     steps:
       - name: Fetch weather
         run: |
-          CITY="Prague"
+          CITY="${{ matrix.city }}"
           WEATHER=$(curl -s "wttr.in/$CITY?format=3")
+
           echo "Current weather in $CITY: $WEATHER"
 
           echo "## $CITY Weather" >> $GITHUB_STEP_SUMMARY
