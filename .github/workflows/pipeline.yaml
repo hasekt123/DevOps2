@@ -21,6 +21,12 @@ jobs:
 
           echo "Current weather in $CITY: $WEATHER"
 
-          echo "## $CITY Weather" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "$WEATHER" >> $GITHUB_STEP_SUMMARY
+          {
+            echo "## 🌤 Weather report"
+            echo ""
+            echo "**City:** $CITY"
+            echo ""
+            echo "**Weather:** $WEATHER"
+            echo ""
+            echo "---"
+          } >> $GITHUB_STEP_SUMMARY
